@@ -1,4 +1,5 @@
 import { getAuth as getAuthFromFireBase, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js";
+import authentication from "./AuthenticationInterface.js";
 
 let auth = getAuthFromFireBase()
 
@@ -13,9 +14,10 @@ let check = () => {
                 console.log("  Email: " + profile.email);
                 console.log("  Photo URL: " + profile.photoURL);
             });
-
+            authentication(true)
         } else {
             console.log('No user logged');
+            authentication(false)
         }
     });
 }

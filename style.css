@@ -1,0 +1,21 @@
+button{
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row;
+    margin: 3px;
+    border-radius: 5px;
+}
+button.fb{
+    background-color: #4167B2; /*//rgb(65, 103, 178);*/
+    color: white;
+}
+button.fb svg{
+    background-color: #4167B2; /*//rgb(65, 103, 178);*/
+}
+button span{
+    margin-left: 15px;
+}

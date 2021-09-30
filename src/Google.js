@@ -4,10 +4,9 @@ import { getAuth } from "./Auth.js";
 
 const provider = new GoogleAuthProvider();
 
-const auth = getAuth();
-
 let logginFromGoogle = () => {
     console.log('trying with google');
+    const auth = getAuth();
     signInWithPopup(auth, provider)
         .then((result) => {
             const credential = GoogleAuthProvider.credentialFromResult(result);
