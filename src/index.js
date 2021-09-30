@@ -1,7 +1,8 @@
 import './Auth.js'
-import loggin from './Facebook.js'
+import loggin, { check } from './Facebook.js'
 
 
 document.querySelector('.fb').addEventListener('click',()=>{
     loggin()
 })
+check()

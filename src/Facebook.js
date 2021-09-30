@@ -1,4 +1,4 @@
-import {getAuth, signInWithPopup, FacebookAuthProvider  } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js";
+import { getAuth, signInWithPopup, FacebookAuthProvider } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js";
 
 
 const provider = new FacebookAuthProvider();
@@ -7,7 +7,7 @@ provider.setCustomParameters({
 });
 const auth = getAuth();
 
-let loggin = ()=>{
+let loggin = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
       // The signed-in user info.
@@ -32,7 +32,31 @@ let loggin = ()=>{
 
       // ...
     });
+}
 
+let check = () => {
+  const auth = getAuth();
+  getRedirectResult(auth)
+    .then((result) => {
+      console.log(result);
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      const credential = FacebookAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+
+      const user = result.user;
+    }).catch((error) => {
+      console.log(error);
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.email;
+      // AuthCredential type that was used.
+      const credential = FacebookAuthProvider.credentialFromError(error);
+      // ...
+    });
 }
 
 export default loggin
+
+export { check }
