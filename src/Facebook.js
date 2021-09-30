@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, FacebookAuthProvider } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js";
+import { getAuth, signInWithPopup, getRedirectResult, FacebookAuthProvider } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js";
 
 
 const provider = new FacebookAuthProvider();
