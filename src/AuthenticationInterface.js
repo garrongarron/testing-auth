@@ -20,14 +20,9 @@ class AuthenticationInterface {
     eventHandlers = (isLogged) => {
         if (isLogged) {
             document.querySelector('.out').addEventListener('click', auth.singOut)
-            //remove
-            document.querySelector('.gg').removeEventListener('click', gg)
-            document.querySelector('.fb').removeEventListener('click', fb)
         } else {
             document.querySelector('.fb').addEventListener('click', fb)
             document.querySelector('.gg').addEventListener('click', gg)
-            //remove
-            document.querySelector('.out').removeEventListener('click', auth.singOut)
         }
     }
     authentication = (isLogged) => {
