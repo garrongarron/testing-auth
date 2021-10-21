@@ -1,4 +1,8 @@
 import './FirebaseConnection.js'
-import { check } from './Auth.js'
+import auth from './Auth.js'
+import authentication from "./AuthenticationInterface.js";
 
-check()
+
+auth.setCallback(authentication.authentication)
+
+auth.check()

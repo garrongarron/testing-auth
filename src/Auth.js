@@ -1,12 +1,18 @@
 import { getAuth as getAuthFromFireBase, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js";
-import authentication from "./AuthenticationInterface.js";
 
-let auth = getAuthFromFireBase()
 
-let check = () => {
-    onAuthStateChanged(auth, (user) => {
+
+class Auth{
+    constructor(){
+        this.auth = getAuthFromFireBase() 
+        this.callback = null   
+    }
+    check = () => {
+        onAuthStateChanged(this.auth, this.switcher);
+    }
+    switcher = (user) => {
         if (user) {
-            const uid = user.uid;
+            // const uid = user.uid;
             user.providerData.forEach((profile) => {
                 console.log("Sign-in provider: " + profile.providerId);
                 console.log("  Provider-specific UID: " + profile.uid);
@@ -14,20 +20,28 @@ let check = () => {
                 console.log("  Email: " + profile.email);
                 console.log("  Photo URL: " + profile.photoURL);
             });
-            authentication(true)
+            if(this.callback){
+                this.callback(true)
+            }
+            // authentication(true)
         } else {
             console.log('No user logged');
-            authentication(false)
+            if(this.callback){
+                this.callback(false)
+            }
+            // authentication(false)
         }
-    });
+    }
+    setCallback(callback){
+        this.callback = callback
+    }
+    singOut = () => {
+        this.auth.signOut();
+    }
 }
 
-let singOut = () => {
-    auth.signOut();
-}
+let auth = new Auth()
 
-let getAuth = ()=>{
-    return auth
-}
 
-export {getAuth,  check, singOut }
+
+export default auth
